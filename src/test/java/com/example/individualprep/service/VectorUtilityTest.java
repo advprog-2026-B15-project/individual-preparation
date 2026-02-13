@@ -86,4 +86,38 @@ class VectorUtilityTest {
 
         assertThrows(IllegalArgumentException.class, () -> vectorUtility.norm(null));
     }
+
+    @Test
+    void subtractReturnsCorrectVectorDifference() {
+        VectorUtility vectorUtility = new VectorUtility();
+        double[] v1 = {10.5, 5.0, 2.0};
+        double[] v2 = {2.5, 1.0, -3.0};
+        double[] expected = {8.0, 4.0, 5.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result, 1e-9);
+    }
+
+    @Test
+    void subtractThrowsDifferentLengths() {
+        VectorUtility vectorUtility = new VectorUtility();
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.subtract(v1, v2);
+        });
+    }
+
+    @Test
+    void subtractWithZeroVector() {
+        VectorUtility vectorUtility = new VectorUtility();
+        double[] v1 = {5.0, 5.0};
+        double[] v2 = {0.0, 0.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(v1, result, 1e-9);
+    }
 }

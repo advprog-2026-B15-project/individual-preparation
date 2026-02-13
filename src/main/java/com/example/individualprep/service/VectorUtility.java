@@ -73,4 +73,6 @@ public class VectorUtility {
         }
         return Math.sqrt(sum);
     }
+
+
 }
