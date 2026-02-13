@@ -22,8 +22,26 @@ public class ArithmeticUtility {
         return o1 / o2;
     }
 
-    public double exponent(double o1, int n) {
-        // TODO: Implement me properly!
-        return 0.0;
+    public double exponent(double base, int n) {
+        if (n == 0) return 1.0;
+
+        // Handle negative exponents: x^-n = (1/x)^n
+        if (n < 0) {
+            base = 1.0 / base;
+            n = -n;
+        }
+
+        double result = 1.0;
+        while (n > 0) {
+            // If n is odd, multiply result by current base
+            if (n % 2 != 0) {
+                result *= base;
+            }
+            // Square the base and halve the exponent
+            base *= base;
+            n /= 2;
+        }
+
+        return result;
     }
 }
