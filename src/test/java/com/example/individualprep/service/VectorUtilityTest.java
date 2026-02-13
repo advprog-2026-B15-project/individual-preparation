@@ -51,5 +51,36 @@ class VectorUtilityTest {
                         new double[]{1, 2, 3}
                 )
         );
+    void normReturnsEuclideanNorm() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        double result = vectorUtility.norm(new double[] { 3.0, 4.0 });
+
+        assertEquals(5.0, result, 1e-9);
+    }
+
+    @Test
+    void normOfZeroVectorReturnsZero() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        double result = vectorUtility.norm(new double[] { 0.0, 0.0, 0.0 });
+
+        assertEquals(0.0, result, 1e-9);
+    }
+
+    @Test
+    void normOfSingleElementVector() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        double result = vectorUtility.norm(new double[] { -7.0 });
+
+        assertEquals(7.0, result, 1e-9);
+    }
+
+    @Test
+    void normThrowsOnNull() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        assertThrows(IllegalArgumentException.class, () -> vectorUtility.norm(null));
     }
 }
