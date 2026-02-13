@@ -18,6 +18,39 @@ class VectorUtilityTest {
     }
 
     @Test
+    void dotProductReturnsValid(){
+        VectorUtility vectorUtility = new VectorUtility();
+
+        double[] v1_test = {1,2.5,3};
+        double[] v2_test = {1,2.5,3};
+
+        double result = vectorUtility.dotProduct(v1_test,v2_test);
+        assertEquals(16.25, result,1e-9);
+    }
+
+    @Test
+    void dotProductThrowsNull() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.dotProduct(null, new double[]{1, 2})
+        );
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.dotProduct(new double[]{1, 2}, null)
+        );
+    }
+
+    @Test
+    void dotProductThrowsDifferentLengths() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.dotProduct(
+                        new double[]{1, 2},
+                        new double[]{1, 2, 3}
+                )
+        );
     void normReturnsEuclideanNorm() {
         VectorUtility vectorUtility = new VectorUtility();
 
