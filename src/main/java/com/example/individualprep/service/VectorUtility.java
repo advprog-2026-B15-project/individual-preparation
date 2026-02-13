@@ -50,7 +50,13 @@ public class VectorUtility {
     }
     
     public double norm(double[] v1) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (v1 == null) {
+            throw new IllegalArgumentException("Vector must not be null");
+        }
+        double sum = 0.0;
+        for (double component : v1) {
+            sum += component * component;
+        }
+        return Math.sqrt(sum);
     }
 }
