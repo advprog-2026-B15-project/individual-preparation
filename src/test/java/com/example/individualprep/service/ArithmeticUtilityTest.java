@@ -43,5 +43,22 @@ class ArithmeticUtilityTest {
         assertEquals(1.5,result,1e-9);
     }
 
+    @Test
+    void divideReturnsQuotient() {
+        assertEquals(2.0, arithmetic.divide(10.0, 5.0), 1e-9);
+    }
 
+    @Test
+    void divideWithNegativeReturnsQuotient() {
+        assertEquals(-2.5, arithmetic.divide(5.0, -2.0), 1e-9);
+    }
+
+    @Test
+    void divideByZeroThrowsException() {
+        ArithmeticException exception = assertThrows(ArithmeticException.class, () -> {
+            arithmetic.divide(10.0, 0.0);
+        });
+
+        assertEquals("Cannot divide by zero!", exception.getMessage());
+    }
 }
