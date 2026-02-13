@@ -26,4 +26,11 @@ class ArithmeticUtilityTest {
     void addReturnsSumOfTwoNegatives() {
         assertEquals(-5.0, arithmetic.add(-2.0, -3.0));
     }
+
+    @Test
+    void multiplyReturnsProduct() {
+        double result = arithmetic.multiply(6.5, -4);
+
+        assertEquals(-26.0, result, 1e-9);
+    }
 }
