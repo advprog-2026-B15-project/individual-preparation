@@ -2,7 +2,7 @@ name: CI Workflows
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "ci-cd/keisha"]
   pull_request:
     branches: [ "main" ]
 
