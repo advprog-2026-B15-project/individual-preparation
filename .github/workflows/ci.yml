@@ -1,4 +1,4 @@
-name: Kotlin CI with Gradle
+name: CI Workflows
 
 on:
   push:
@@ -13,12 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Wajib untuk SonarCloud
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '21' # Sesuaikan dengan versi Java/Kotlin kamu
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Setup Gradle
@@ -27,14 +27,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Langkah 1: Build & Linter (ktlint)
-      # Perintah 'build' di Gradle biasanya sudah otomatis menjalankan 'ktlintCheck'
-      # Jika ktlint gagal (kodingan jelek), step ini akan Merah.
-      - name: Build with Gradle (includes Linter)
+      - name: Build with Gradle
         run: ./gradlew build
 
-      # Langkah 2: SonarCloud Scan
-      # Pastikan kamu sudah memasukkan SONAR_TOKEN di Settings > Secrets repo GitHub kamu
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
