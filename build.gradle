@@ -41,6 +41,7 @@ sonar {
 
 checkstyle {
 	toolVersion = "10.12.5"
-	configFile = file("config/checkstyle/checkstyle.xml")
+	configFile = rootProject.file("config/checkstyle/checkstyle.xml")
 	ignoreFailures = false
+	showViolations = true
 }
